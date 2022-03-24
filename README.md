@@ -1,5 +1,5 @@
-# picner-services
-NestJS services for Picner App
+# Picner Services
+Servicios web applicación Picner
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
