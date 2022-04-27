@@ -1,8 +1,8 @@
 {
   "name": "picner-services",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Servicios web app Picner",
+  "author": "Jorge Gómez Tortosa",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
