@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('Documentación de los servicios web app Picner')
     .setVersion('1.0')
     .addTag('areas')
+    .addTag('users')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('documentation', app, document);
