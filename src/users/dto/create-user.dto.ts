@@ -9,6 +9,10 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'El email no puede quedar vacío.' })
   readonly email: string;
 
+  @IsString({ message: 'Se esperaba una cadena de texto para el usuario.' })
+  @IsNotEmpty({ message: 'El usuario no puede quedar vacío.' })
+  readonly username: string;
+
   @IsString({ message: 'Se esperaba una cadena de texto para la contraseña.' })
   readonly password?: string;
 

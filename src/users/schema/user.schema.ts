@@ -10,6 +10,11 @@ export const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 3
   },
+  username: {
+    type: String,
+    required: true,
+    minlength: 3
+  },
   password: {
     type: String,
     minlength: 4

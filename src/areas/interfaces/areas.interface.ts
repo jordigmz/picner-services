@@ -11,11 +11,3 @@ export interface Area {
   distance?: number;
   mine?: boolean;
 }
-
-export interface AreasResponse {
-  areas: Area[];
-}
-
-export interface AreaResponse {
-  area: Area;
-}
