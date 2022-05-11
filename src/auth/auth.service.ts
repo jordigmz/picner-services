@@ -6,8 +6,14 @@ import { User } from 'src/users/interfaces/users.interface';
 export class AuthService {
   constructor(private usersService: UsersService) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.getUserbyUsername(username);
+  async validateUser(usr: string, pass: string): Promise<any> {
+    let user;
+    if (usr.includes("@")) {
+      user = await this.usersService.getUserbyEmail(usr);
+    } else {
+      user = await this.usersService.getUserbyUsername(usr);
+    }
+
     if (user && user.password === pass) {
       const { password, ...result } = user;
       return result;
