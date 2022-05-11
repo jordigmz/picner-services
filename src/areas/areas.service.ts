@@ -8,8 +8,7 @@ import { Area } from './interfaces/areas.interface';
 
 @Injectable()
 export class AreasService {
-  constructor(@InjectModel('Area') 
-  private readonly areaModel: Model<Area>) {}
+  constructor(@InjectModel('Area') private readonly areaModel: Model<Area>) {}
 
   async create(createAreaDto: CreateAreaDto): Promise<Area> {
     const newArea = new this.areaModel(createAreaDto);

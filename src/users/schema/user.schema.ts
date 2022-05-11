@@ -1,19 +1,21 @@
 import * as mongoose from 'mongoose';
 
-export const AreaSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
     minlength: 3
   },
-  description: {
+  email: {
     type: String,
     required: true,
     minlength: 3
   },
-  image: {
+  password: {
     type: String,
-    required: true
+    minlength: 4
+  },
+  avatar: {
+    type: String
   },
   lat: {
     type: Number,
@@ -23,20 +25,7 @@ export const AreaSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  address: {
-    type: String,
-    minlength: 3
-  },
-  visibility: {
-    type: Number
-  },
-  creator: {
-    type: Number
-  },
-  distance: {
-    type: String
-  },
-  mine: {
+  me: {
     type: Boolean
   },
 });

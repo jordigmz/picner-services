@@ -4,35 +4,34 @@ export class CreateAreaDto {
   @IsString({ message: 'Se esperaba una cadena de texto para el título.' })
   @MinLength(3, { message: 'El título es muy corto.' })
   @IsNotEmpty({ message: 'El título no puede quedar vacío.' })
-  name: string;
+  readonly name: string;
 
   @IsString({ message: 'Se esperaba una cadena de texto para la descripción.' })
   @MinLength(3, { message: 'La descripción es muy corta.' })
   @IsNotEmpty({ message: 'La descripción no puede quedar vacía.' })
-  description: string;
+  readonly description: string;
 
   @IsString({ message: 'Se esperaba una cadena de texto para la imagen.' })
   @IsNotEmpty({ message: 'La imagen no puede quedar vacía.' })
-  image: string;
+  readonly image: string;
 
   @IsNumber({}, { message: 'Se esperaba dato númerico para la latitud.' })
   @IsNotEmpty({ message: 'La latitud no puede quedar vacía.' })
-  lat!: number;
+  readonly lat!: number;
 
   @IsNumber({}, { message: 'Se esperaba dato númerico para la longitud.' })
   @IsNotEmpty({ message: 'La longitud no puede quedar vacía.' })
-  lng!: number;
+  readonly lng!: number;
 
   @IsString()
   @MinLength(3, { message: 'La dirección es muy corta.' })
-  address: string;
+  readonly address: string;
 
-  @IsNotEmpty({ message: 'La visibilidad no puede quedar vacía.' })
-  visibility: number;
+  readonly visibility: number;
 
-  creator: number;
+  readonly creator: number;
 
-  distance: number;
+  readonly distance: number;
 
-  mine: boolean;
+  readonly mine: boolean;
 }
