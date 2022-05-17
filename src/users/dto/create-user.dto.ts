@@ -15,7 +15,7 @@ export class CreateUserDto {
   readonly username: string;
 
   @IsString({ message: 'Se esperaba una cadena de texto para la contraseña.' })
-  readonly password?: string;
+  password?: string;
 
   @IsString({ message: 'Se esperaba una cadena de texto para el avatar.' })
   readonly avatar?: string;
