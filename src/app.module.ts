@@ -5,13 +5,14 @@ import { AppService } from './app.service';
 import { AreasModule } from './areas/areas.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { secretConstants } from 'secret';
 
 @Module({
   imports: [
     AreasModule,
     UsersModule,
     AuthModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/picner')
+    MongooseModule.forRoot(secretConstants.databaseUrl)
   ],
   controllers: [AppController],
   providers: [AppService],
