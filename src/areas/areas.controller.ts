@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AreasService } from './areas.service';
 import { CreateAreaDto } from './dto/create-area.dto';
@@ -10,7 +10,7 @@ export class AreasController {
   constructor(private readonly areasService: AreasService) {}
 
   @Post()
-  create(@Body() createAreaDto: CreateAreaDto) {
+  create(@Body(new ValidationPipe({ transform: true, whitelist: true })) createAreaDto: CreateAreaDto) {
     return this.areasService.create(createAreaDto);
   }
 
@@ -25,7 +25,7 @@ export class AreasController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAreaDto: UpdateAreaDto) {
+  update(@Param('id') id: string, @Body(new ValidationPipe({ transform: true, whitelist: true })) updateAreaDto: UpdateAreaDto) {
     return this.areasService.update(id, updateAreaDto);
   }
 

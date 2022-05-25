@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, ValidationPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -10,7 +10,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  create(@Body(new ValidationPipe({ transform: true, whitelist: true })) createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
@@ -25,7 +25,7 @@ export class UsersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  update(@Param('id') id: string, @Body(new ValidationPipe({ transform: true, whitelist: true })) updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
 

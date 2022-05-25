@@ -11,7 +11,7 @@ import { UsersModule } from './users/users.module';
     AreasModule,
     UsersModule,
     AuthModule,
-    MongooseModule.forRoot('mongodb://picnerAdmin:ZdY6VX2QAx9@localhost:27017/picner')
+    MongooseModule.forRoot('mongodb://localhost:27017/picner')
   ],
   controllers: [AppController],
   providers: [AppService],
