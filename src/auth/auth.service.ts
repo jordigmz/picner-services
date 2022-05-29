@@ -9,7 +9,7 @@ import { comparePasswords } from 'src/utils/bcrypt';
 export class AuthService {
   constructor(
     private usersService: UsersService,
-    private readonly jwtService: JwtService
+    private jwtService: JwtService
   ) {}
 
   generateJwt(user: User): Observable<string> {
