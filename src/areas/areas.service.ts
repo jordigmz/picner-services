@@ -5,13 +5,17 @@ import { UpdateAreaDto } from './dto/update-area.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Area } from './interfaces/areas.interface';
+import { ImageService } from 'src/commons/image/image.service';
 
 @Injectable()
 export class AreasService {
-  constructor(@InjectModel('Area') private readonly areaModel: Model<Area>) {}
+  constructor(@InjectModel('Area') private readonly areaModel: Model<Area>, private imageService: ImageService) {}
 
   async create(createAreaDto: CreateAreaDto): Promise<Area> {
     const newArea = new this.areaModel(createAreaDto);
+    
+    createAreaDto.image = await this.imageService.saveImage('areas', createAreaDto.image);
+
     return await newArea.save();
   }
 

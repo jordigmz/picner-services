@@ -13,7 +13,7 @@ export class CreateAreaDto {
 
   @IsString({ message: 'Se esperaba una cadena de texto para la imagen.' })
   @IsNotEmpty({ message: 'La imagen no puede quedar vacía.' })
-  readonly image: string;
+  image: string;
 
   @IsNumber({}, { message: 'Se esperaba dato númerico para la latitud.' })
   @IsNotEmpty({ message: 'La latitud no puede quedar vacía.' })
