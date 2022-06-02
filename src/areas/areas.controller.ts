@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, ValidationPipe, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { AreasService } from './areas.service';
@@ -26,7 +26,7 @@ export class AreasController {
     return this.areasService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body(new ValidationPipe({ transform: true, whitelist: true })) updateAreaDto: UpdateAreaDto) {
     return this.areasService.update(id, updateAreaDto);
   }

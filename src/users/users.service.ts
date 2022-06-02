@@ -10,7 +10,9 @@ import { ImageService } from 'src/commons/image/image.service';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>, private imageService: ImageService) {}
+  constructor(
+  @InjectModel('User') private readonly userModel: Model<User>,
+  private imageService: ImageService) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const password = hashPassword(createUserDto.password);
@@ -37,8 +39,30 @@ export class UsersService {
     return await this.userModel.findOne({ email });
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
-    return await this.userModel.findByIdAndUpdate(id, updateUserDto).exec();
+  async updateUserInfo(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    const userEdit = new this.userModel(updateUserDto);
+
+    this.userModel.findByIdAndUpdate(id, updateUserDto).exec();
+
+    return await userEdit.overwrite(updateUserDto);
+  }
+
+  async updateAvatar(id: string, updateUserDto: UpdateUserDto): Promise<User> {    
+    const userEdit = new this.userModel(updateUserDto);
+
+    this.userModel.findByIdAndUpdate(id, updateUserDto).exec();
+
+    return await userEdit.overwrite(updateUserDto);
+  }
+
+  async updatePassword(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    updateUserDto.password = hashPassword(updateUserDto.password);
+
+    const userEdit = new this.userModel(updateUserDto);
+
+    this.userModel.findByIdAndUpdate(id, updateUserDto).exec();
+
+    return await userEdit.overwrite(updateUserDto);
   }
 
   async remove(id: string): Promise<User> {

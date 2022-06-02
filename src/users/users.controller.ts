@@ -8,12 +8,13 @@ import {
   Post,
   ValidationPipe,
   UseGuards,
+  Put,
+  Req,
+  NotFoundException,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/auth/decorators/public.decorator';
 import { AuthUser } from 'src/auth/decorators/users.decorator';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './interfaces/users.interface';
 import { UsersService } from './users.service';
@@ -46,13 +47,31 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put('me')
   update(
-    @Param('id') id: string,
+    @AuthUser() user: User,
     @Body(new ValidationPipe({ transform: true, whitelist: true }))
     updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.update(id, updateUserDto);
+    return this.usersService.updateUserInfo(user.id, updateUserDto);
+  }
+
+  @Put('me/photo')
+  updatePhoto(
+    @AuthUser() user: User,
+    @Body(new ValidationPipe({ transform: true, whitelist: true }))
+    updateUserDto: UpdateUserDto,
+  ) {
+    return this.usersService.updateAvatar(user.id, updateUserDto);
+  }
+
+  @Put('me/password')
+  updatePass(
+    @AuthUser() user: User,
+    @Body(new ValidationPipe({ transform: true, whitelist: true }))
+    updateUserDto: UpdateUserDto,
+  ) {
+    return this.usersService.updatePassword(user.id, updateUserDto);
   }
 
   @Delete(':id')
