@@ -5,9 +5,9 @@ export interface Area {
   image: string;
   lat: number;
   lng: number;
-  address?: string;
-  visibility?: number;
-  creator?: string;
-  distance?: number;
+  creator: string;
+  address: string;
   mine?: boolean;
+  visibility?: number;
+  distance?: number;
 }

@@ -23,20 +23,21 @@ export const AreaSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  creator: {
+    type: String,
+    required: true
+  },
   address: {
     type: String,
-    minlength: 3
+    required: true
+  },
+  mine: {
+    type: Boolean
   },
   visibility: {
     type: Number
   },
-  creator: {
-    type: Number
-  },
   distance: {
     type: String
-  },
-  mine: {
-    type: Boolean
   },
 });

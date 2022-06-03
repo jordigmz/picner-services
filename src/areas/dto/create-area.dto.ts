@@ -23,15 +23,17 @@ export class CreateAreaDto {
   @IsNotEmpty({ message: 'La longitud no puede quedar vacía.' })
   readonly lng!: number;
 
-  @IsString()
-  @MinLength(3, { message: 'La dirección es muy corta.' })
+  @IsString({ message: 'Se esperaba una cadena de texto para el id del usuario propietario del área.' })
+  @IsNotEmpty({ message: 'El propietario no puede quedar vacío.' })
+  readonly creator: string;
+
+  @IsString({ message: 'Se esperaba una cadena de texto para la dirección.' })
   readonly address: string;
+
+  readonly mine: boolean;
 
   readonly visibility: number;
 
-  readonly creator: number;
-
   readonly distance: number;
 
-  readonly mine: boolean;
 }
