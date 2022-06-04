@@ -39,6 +39,10 @@ export const UserSchema = new mongoose.Schema({
     type: [String],
     required: true
   },
+  sos: {
+    type: Number,
+    required: true
+  },
   me: {
     type: Boolean
   },

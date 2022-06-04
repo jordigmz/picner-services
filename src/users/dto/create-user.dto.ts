@@ -31,5 +31,9 @@ export class CreateUserDto {
   @IsArray()
   readonly guardados: string[];
 
+  @IsNumber({}, { message: 'Se esperaba dato númerico para el contacto de emergencia.' })
+  @IsNotEmpty({ message: 'El contacto de emergencia no puede quedar vacío.' })
+  readonly sos: number;
+
   readonly me?: boolean;
 }
