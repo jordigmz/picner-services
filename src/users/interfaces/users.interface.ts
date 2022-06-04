@@ -7,5 +7,6 @@ export interface User {
   avatar?: string;
   lat: number;
   lng: number;
+  guardados: string[];
   me?: boolean;
 }

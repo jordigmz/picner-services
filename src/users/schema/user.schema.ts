@@ -35,6 +35,10 @@ export const UserSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  guardados: {
+    type: [String],
+    required: true
+  },
   me: {
     type: Boolean
   },

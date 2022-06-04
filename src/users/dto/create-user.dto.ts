@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber, MinLength, NotContains } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, MinLength, NotContains, IsArray } from 'class-validator';
 
 export class CreateUserDto {
   @IsString({ message: 'Se esperaba una cadena de texto para el nombre.' })
@@ -27,6 +27,9 @@ export class CreateUserDto {
   @IsNumber({}, { message: 'Se esperaba dato númerico para la longitud.' })
   @IsNotEmpty({ message: 'La longitud no puede quedar vacía.' })
   readonly lng: number;
+
+  @IsArray()
+  readonly guardados: string[];
 
   readonly me?: boolean;
 }
