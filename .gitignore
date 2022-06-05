@@ -36,4 +36,9 @@ lerna-debug.log*
 
 # Constants
 secret.ts
-img/
+
+# Images
+img/areas/*
+img/users/*
+!img/areas/.gitkeep
+!img/users/.gitkeep
