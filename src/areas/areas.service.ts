@@ -14,7 +14,7 @@ export class AreasService {
   async create(createAreaDto: CreateAreaDto): Promise<Area> {
     const newArea = new this.areaModel(createAreaDto);
     
-    createAreaDto.image = await this.imageService.saveImage('areas', createAreaDto.image);
+    //await this.imageService.saveImage('areas', createAreaDto.image);
 
     return await newArea.save();
   }
