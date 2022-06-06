@@ -4,13 +4,9 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
-  Post,
   ValidationPipe,
   UseGuards,
-  Put,
-  Req,
-  NotFoundException,
+  Put
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthUser } from 'src/auth/decorators/users.decorator';
@@ -53,7 +49,7 @@ export class UsersController {
     @Body(new ValidationPipe({ transform: true, whitelist: true }))
     updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.updateUserInfo(user.id, updateUserDto);
+    return this.usersService.updateUserInfo(user._id, updateUserDto);
   }
 
   @Put('me/photo')
@@ -62,7 +58,7 @@ export class UsersController {
     @Body(new ValidationPipe({ transform: true, whitelist: true }))
     updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.updateAvatar(user.id, updateUserDto);
+    return this.usersService.updateAvatar(user._id, updateUserDto);
   }
 
   @Put('me/password')
@@ -71,7 +67,7 @@ export class UsersController {
     @Body(new ValidationPipe({ transform: true, whitelist: true }))
     updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.updatePassword(user.id, updateUserDto);
+    return this.usersService.updatePassword(user._id, updateUserDto);
   }
 
   @Delete(':id')

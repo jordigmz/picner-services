@@ -1,8 +1,6 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, ValidationPipe, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AuthUser } from 'src/auth/decorators/users.decorator';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { User } from 'src/users/interfaces/users.interface';
 import { AreasService } from './areas.service';
 import { CreateAreaDto } from './dto/create-area.dto';
 import { UpdateAreaDto } from './dto/update-area.dto';
