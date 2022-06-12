@@ -21,6 +21,7 @@ export class AuthController {
 
   @Public()
   @Post('register')
+  @HttpCode(204)
   create(@Body(new ValidationPipe({ transform: true, whitelist: true })) createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }

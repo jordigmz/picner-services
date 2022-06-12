@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -13,6 +13,17 @@ export class UsersService {
   @InjectModel('User') private readonly userModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
+    const userEmail = await this.getUserbyEmail(createUserDto.email);
+    const userUsername = await this.getUserbyUsername(createUserDto.username);
+    
+    if (userEmail) {
+      throw new HttpException('Ya existe un usuario con ese correo.', HttpStatus.CONFLICT);
+    }
+
+    if (userUsername) {
+      throw new HttpException('Ya existe un usuario con ese nombre de usuario.', HttpStatus.CONFLICT);
+    }
+
     const password = hashPassword(createUserDto.password);
     const newUser = new this.userModel({ ...createUserDto, password });
 
@@ -28,11 +39,11 @@ export class UsersService {
   }
 
   async getUserbyUsername(username: string): Promise<User> {
-    return await this.userModel.findOne({ username });
+    return await this.userModel.findOne({ username }).exec();
   }
 
   async getUserbyEmail(email: string): Promise<User> {
-    return await this.userModel.findOne({ email });
+    return await this.userModel.findOne({ email }).exec();
   }
 
   async updateUserInfo(id: string, updateUserDto: UpdateUserDto): Promise<User> {
